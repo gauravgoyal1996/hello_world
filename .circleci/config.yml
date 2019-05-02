@@ -10,7 +10,7 @@ jobs:
    build:
     machine:true
       - checkout
-      - run: curl 127.0.0.1:8080
+      - run: echo hello world
 workflows:
   version: 2
   build_and_test:
