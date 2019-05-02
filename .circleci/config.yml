@@ -7,8 +7,9 @@ jobs:
       - checkout
       - run: go run hello.go
   test:
+   build:
     machine:
-    steps:
+      image: circleci/classic:latest
       - checkout
       - run: curl 127.0.0.1:8080
 workflows:
