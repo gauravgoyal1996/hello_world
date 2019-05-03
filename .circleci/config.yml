@@ -1,6 +1,12 @@
 version: 2
 jobs:
   build:
+    steps:
+    - run: sudo apt-get install nginx
+    - run: nginx -V
+    - run: ifconfig
+
+  deploy:
     machine: true
     steps:
     - add_ssh_keys:
@@ -10,3 +16,14 @@ jobs:
     - run: sudo apt-get install nginx
     - run: nginx -V
     - run: ifconfig
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
