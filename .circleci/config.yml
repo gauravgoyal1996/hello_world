@@ -1,5 +1,10 @@
 version: 2
 jobs:
+  deploy-job:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+		- "96:e7:07:40:e6:c0:8c:bc:72:b8:db:c9:36:b1:9c:e2"
   buil:
     docker:
       - image: circleci/golang:1.11.2
@@ -7,13 +12,12 @@ jobs:
       - checkout
       - run: go run hello.go
   test:
-   build:
-    machine:true
-      - checkout
-      - run: echo "hello world"
+   steps:
+      -run: curl 127.0.0.1:8080
 workflows:
   version: 2
   build_and_test:
     jobs:
+      -deploy-job
       -buil
       -test
