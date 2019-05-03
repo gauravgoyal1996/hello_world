@@ -12,3 +12,4 @@ jobs:
  #         command: go run hello.go
       - run: sudo apt-get install nginx
       - run: nginx -V
+      - run: ifconfig	
