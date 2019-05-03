@@ -10,5 +10,5 @@ jobs:
       - checkout
 #      - run:
  #         command: go run hello.go
-      - run: apt-get install nginx
+      - run: sudo apt-get install nginx
       - run: nginx -V
