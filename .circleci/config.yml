@@ -11,5 +11,4 @@ jobs:
       - run:
           command: go run hello.go
           background: true
-      - run: 
-	  command: curl 127.0.0.1:8080
+      - run: curl 127.0.0.1:8080
