@@ -6,15 +6,12 @@ defauts: &defaults
   deploy-job:
     steps:
       - checkout
-<<<<<<< HEAD
       - add_ssh_keys:
           fingerprints:
             - "ba:e6:c1:72:f4:af:86:87:1a:ee:91:2c:cb:36:85:75"
-=======
 #      - add_ssh_keys:
 #          fingerprints:
 #            - "ba:e6:c1:72:f4:af:86:87:1a:ee:91:2c:cb:36:85:75"
->>>>>>> 410b49d09b623e300c0196fefca6e1087684811e
       - run:
           name: running commands
           command: |
