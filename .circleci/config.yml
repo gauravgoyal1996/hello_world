@@ -6,17 +6,12 @@ defauts: &defaults
   deploy-job:
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "ba:e6:c1:72:f4:af:86:87:1a:ee:91:2c:cb:36:85:75"
-#      - add_ssh_keys:
-#          fingerprints:
-#            - "ba:e6:c1:72:f4:af:86:87:1a:ee:91:2c:cb:36:85:75"
       - run:
           name: running commands
           command: |
-	    ssh $ssh_user@$ssh_host
-            cd /home/ubuntu/hello_world
+            echo -e "private_key_file = ~/.ssh/id_rsa$FINGER_PRINT"
+            ssh -i "private_key_file" ubuntu@$hostname
+	    cd /home/ubuntu/hello_world
             go run hello.go &
             curl 127.0.0.1:8080
 
