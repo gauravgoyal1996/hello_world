@@ -1,26 +1,19 @@
-version: 2
-jobs:
-  build:
-    machine: true
+version: 2.0
+defauts: &defaults
+  docker:
+  - image: ubuntu:18.04
+  jobs:
+  deploy-job:
     steps:
-    - run: sudo apt-get install nginx
-    - run: nginx -V
-    - run: ifconfig
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "ba:e6:c1:72:f4:af:86:87:1a:ee:91:2c:cb:36:85:75"
+      - run:
+          name: running commands
+          command: |
+            cd /home/ubuntu/hello_world
+            go run hello.go &
+            curl 127.0.0.1:8080
 
-  deploy:
-    machine: true
-    steps:
-    - add_ssh_keys:
-        fingerprints:
-        - 96:e7:07:40:e6:c0:8c:bc:72:b8:db:c9:36:b1:9c:e2
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+
