@@ -3,9 +3,10 @@ defauts: &defaults
   docker:
   - image: ubuntu:18.04
   jobs:
-  deploy-job:
-    steps:
+  build:
       - checkout
+  deploy:
+    steps:
       - run:
           name: running commands
           command: |
@@ -16,5 +17,11 @@ defauts: &defaults
             cd /home/ubuntu/hello_world
             go run hello.go &
             curl 127.0.0.1:8080
-
-
+ workflows:
+  version: 2
+  Example_Workflow:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
