@@ -4,6 +4,7 @@ defauts: &defaults
   - image: ubuntu:18.04
 jobs:
  build:
+  <<: *defaults
    steps:
      - checkout
  deploy:
