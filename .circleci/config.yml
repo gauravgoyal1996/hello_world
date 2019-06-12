@@ -21,7 +21,7 @@ jobs:
            apt-get -yq update && apt-get -yqq install ssh
            cd 
            cd .ssh
-           ssh-keyscan -H ec2-18-218-226-96.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
+           ssh-keyscan -H ec2-18-218-226-96.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts/
            echo -e "private_key_file = /root/.ssh/id_rsa_$FINGER_PRINT"
            echo -e "remote_user = ubuntu"
            ls -a
